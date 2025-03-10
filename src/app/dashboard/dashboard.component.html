@@ -1,0 +1,34 @@
+<div class="tool-bar">
+  <app-toolbar/>
+</div>
+<div class="container">
+  <div class="tab">
+    <div class="vedio-input">
+      <h1>Upload Your Video for <strong>Insight</strong></h1>
+      <input
+        #fileInput
+        type="file"
+        accept=".mp4, .avi, .mkv, .mov, .webm"
+        (change)="onFileSelected($event)"
+        hidden
+      />
+      <button
+        matTooltip="Supported format .mp4, .avi, .mkv, .mov, .webm"
+        (click)="openFileChooser()"
+      >
+        <i class="bx bx-upload"></i> Choose a file
+      </button>
+      <p>{{ vedioName }}</p>
+    </div>
+    <div class="actions">
+      <button id="preview" (click)="preview()">Preview</button>
+      <button id="insight" (click)="insight()">Insight</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="previewOn" class="preview-overlay">
+  <div class="preview-content">
+    <button class="close-btn" (click)="closePreview()">X</button>
+    <video [src]="videoPreview" controls></video>
+  </div>
+</div>
