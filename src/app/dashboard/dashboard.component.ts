@@ -22,6 +22,8 @@ export class DashboardComponent {
   vedioName: string = 'No file chosen';
   previewOn: boolean = false;
   videoPreview: string | null = null;
+  selectedFile!: File;
+
 
   constructor(private apiService: ApiServiceService, private router: Router) {}
 
@@ -44,6 +46,7 @@ export class DashboardComponent {
       if (allowedTypes.includes(file.type)) {
         this.vedioName = file.name;
         this.videoPreview = URL.createObjectURL(file);
+        this.selectedFile = file;
       } else {
         alert('Invalid file format! Please select a valid video file.');
         input.value = '';
@@ -62,6 +65,7 @@ export class DashboardComponent {
 
   insight() {
     if (this.videoPreview) {
+      this.apiService.vedioInsight(this.selectedFile ?? undefined);
       this.router.navigate(['/insight']);
     } else {
       alert('No file chosen to insight');
