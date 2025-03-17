@@ -65,7 +65,7 @@ export class DashboardComponent {
 
   insight() {
     if (this.videoPreview) {
-      this.apiService.vedioInsight(this.selectedFile ?? undefined);
+      this.apiService.vedioInsight(this.selectedFile);
       this.router.navigate(['/insight']);
     } else {
       alert('No file chosen to insight');
